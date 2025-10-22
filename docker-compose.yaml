@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: evopay-postgres
+    environment:
+      POSTGRES_DB: evopay
+      POSTGRES_USER: evopay
+      POSTGRES_PASSWORD: evopay_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - evopay_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U evopay -d evopay"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - evopay-net
+
+volumes:
+  evopay_pg_data:
+
+networks:
+  evopay-net:

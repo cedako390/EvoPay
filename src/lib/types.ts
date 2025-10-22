@@ -6,7 +6,7 @@ export interface AppBindings {
   Variables: {
     logger: PinoLogger;
   };
-};
+}
 
 // eslint-disable-next-line ts/no-empty-object-type
 export type AppOpenAPI<S extends Schema = {}> = OpenAPIHono<AppBindings, S>;
